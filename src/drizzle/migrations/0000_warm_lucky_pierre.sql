@@ -5,3 +5,6 @@ CREATE TABLE "subscriptions" (
 	"created_at" timestamp DEFAULT now() NOT NULL,
 	CONSTRAINT "subscriptions_email_unique" UNIQUE("email")
 );
+
+
+
