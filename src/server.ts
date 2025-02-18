@@ -4,8 +4,11 @@ import {
     validatorCompiler,
     serializerCompiler,
     ZodTypeProvider,
+    jsonSchemaTransform,
 } from 'fastify-type-provider-zod'
-import { z } from 'zod'
+import { fastifySwagger } from '@fastify/swagger'
+import { fastifySwaggerUi } from '@fastify/swagger-ui'
+import { subscribeToEventRoute } from "./routes/subscribe-to-event-route";
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -14,23 +17,21 @@ app.setValidatorCompiler(validatorCompiler)
 
 app.register(fastifyCors)
 
-app.post('/subscriptions', {
-    schema: {
-        body:z.object({
-            name: z.string(),
-            email: z.string().email(),
-        })
-    }
-} ,(request, reply) => {
-    const { name, email } = request.body
-
-    // criação da inscrição do banco de dados
-
-    return reply.status(201).send({
-        name,
-        email,
-    })    
+app.register(fastifySwagger, {
+    openapi: {
+        info: {
+            title: 'NLW Connect',
+            version: '0.0.1',
+        },
+    },
+    transform: jsonSchemaTransform,
 })
+
+app.register(fastifySwaggerUi, {
+    routePrefix: '/docs',
+})
+
+app.register(subscribeToEventRoute)
 
 app.listen({port: 3333}).then(() => {
     console.log('HTTP server runnig!')
