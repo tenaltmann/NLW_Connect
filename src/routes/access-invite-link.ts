@@ -1,6 +1,8 @@
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod'
 import { z } from 'zod'
 import { env } from '../env'
+import { accessInviteLink } from '../functions/access-invite-link'
+import { redis } from '../redis/client'
 
 export const accessInviteLinkRoute: FastifyPluginAsyncZod = async app => {
   app.get(
@@ -22,7 +24,7 @@ export const accessInviteLinkRoute: FastifyPluginAsyncZod = async app => {
     async (request, reply) => {
       const { subscriberId } = request.params
 
-      console.log(subscriberId)
+      await accessInviteLink({ subscriberId })
 
       const redirectUrl = new URL(env.WEB_URL)
 
