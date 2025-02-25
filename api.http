@@ -1,11 +1,18 @@
+
+
 POST http://localhost:3333/subscriptions
 Content-Type: application/json
 
 {
     "name": "Ricardo Altmann",
-    "email": "tenaltmann@gmail.com"
+    "email": "2tenaltmann@gmail.com"
 }
 
 ###
 
 GET http://localhost:3333/invites/diego123
+
+
+
+### 
+GET http://localhost:3333/subscribers/diego123/ranking/clicks
