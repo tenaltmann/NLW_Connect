@@ -4,15 +4,35 @@ POST http://localhost:3333/subscriptions
 Content-Type: application/json
 
 {
-    "name": "Ricardo Altmann",
-    "email": "2tenaltmann@gmail.com"
+    "name": "Usuário indicado 3",
+    "email": "calcuta23@gmail.com",
+    "referrer": "9a82867d-e701-41c2-8aec-67e5d36362d3"
 }
 
 ###
 
-GET http://localhost:3333/invites/diego123
+GET http://localhost:3333/invites/f439d0a2-ccfd-4874-a943-cec67b2b435f
 
 
 
 ### 
-GET http://localhost:3333/subscribers/diego123/ranking/clicks
+GET http://localhost:3333/subscribers/f439d0a2-ccfd-4874-a943-cec67b2b435f/ranking/clicks
+
+
+
+###
+
+GET http://localhost:3333/subscribers/f439d0a2-ccfd-4874-a943-cec67b2b435f/ranking/count
+
+
+###
+
+GET http://localhost:3333/subscribers/f439d0a2-ccfd-4874-a943-cec67b2b435f/ranking/position
+
+
+###
+
+GET http://localhost:3333/ranking
+
+
+
